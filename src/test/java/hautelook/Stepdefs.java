@@ -23,36 +23,44 @@ public class Stepdefs {
     @When("^I add a \"([^\"]*)\" dollar item named \"([^\"]*)\"$")
     public void iAddADollarItemNamed(int itemCost, String productName) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        //throw new PendingException();
+    	cart.addItem(productName, itemCost);
     }
 
     @Given("^I have a cart with a \"([^\"]*)\" dollar item named \"([^\"]*)\"$")
     public void iHaveACartWithADollarItemNamed(int itemCost, String productName) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+//        throw new PendingException();
+    	this.cart = new Cart();
+    	cart.addItem(productName, itemCost);
     }
 
     @Then("^My quantity of products named \"([^\"]*)\" should be \"([^\"]*)\"$")
     public void myQuantityOfProductsNamedShouldBe(String productName, int itemCount) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        //throw new PendingException();
+    	int productQuantity = cart.getQuantityOfProduct(productName);
+    	Assert.assertTrue("Product Quantity is " + productQuantity, productQuantity == itemCount);
     }
 
     @When("^I apply a \"([^\"]*)\" percent coupon code$")
     public void iApplyAPercentCouponCode(int percentOff) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        cart.applyDiscount(percentOff);
     }
 
     @When("^I add a \"([^\"]*)\" dollar \"([^\"]*)\" lb item named \"([^\"]*)\"$")
     public void iAddADollarItemWithWeight(int itemCost, int itemWeight, String productName) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        cart.addItem(productName, itemCost);
+        cart.updateItemWeight(productName, itemWeight);
     }
 
     @Then("^My total should be \"([^\"]*)\" dollars$")
     public void myTotalShouldBeDollars(int total) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        //throw new PendingException();
+    	double cartTotal = cart.cartTotal();
+    	Assert.assertTrue("My Total is " + cartTotal, cartTotal == total);
     }
 }
